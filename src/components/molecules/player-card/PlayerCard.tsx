@@ -8,6 +8,7 @@ import { GameContext } from "../../../contexts/GameContext";
 interface PlayerProps {
     player: PlayerModel;
 }
+
 function IsColorDark(rgb: RGBModel) {
     // Variables for red, green, blue values
     var r, g, b, hsp;
@@ -51,14 +52,14 @@ function PlayerCard(props: PlayerProps) {
                                           : "#000",*/
         let isDark = IsColorDark(colors);
         if (myTurn) {
-          return !isDark ? "#fff" : "#000";
+            return !isDark ? "#fff" : "#000";
         }
         return "#fff";
     }
 
     let myScore = gameContext.getPlayerTotalScore(props.player.id);
     useEffect(() => {
-      myScore = gameContext.getPlayerTotalScore(props.player.id);
+        myScore = gameContext.getPlayerTotalScore(props.player.id);
     }, [gameContext.getPlayerTotalScore(props.player.id)]);
 
     return (
@@ -67,6 +68,12 @@ function PlayerCard(props: PlayerProps) {
         <div
             onClick={() => gameContext.setCurrentPlayer(props.player.id)}
             className={`player_card_wrap ${myTurn ? "myturn" : ""}`}
+            style={{
+                backgroundColor: myTurn
+                    ? `rgba(${colors.r}, ${colors.g}, ${colors.b}, 0.2)`
+                    : "",
+                backgroundBlendMode: myTurn ? "darken" : "",
+            }}
         >
             <div className="ball">
                 <GolfBall r={colors.r} g={colors.g} b={colors.b} />
@@ -81,9 +88,7 @@ function PlayerCard(props: PlayerProps) {
                 >
                     {props.player.name}
                 </div>
-                <div className="score_total">
-                    Score: {myScore}
-                </div>
+                <div className="score_total">Score: {myScore}</div>
             </div>
             <div className="score_box">
                 <div

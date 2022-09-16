@@ -11,11 +11,11 @@ function RoundPage() {
   
   function addDummyPlayers() {
     let players: PlayerModel[] = [
-        { id: 0, name: "Jonathan", color: { r: 255, g: 255, b: 0 } },
-        { id: 1, name: "Jessica", color: { r: 255, g: 0, b: 0 } },
-        { id: 2, name: "Kate", color: { r: 0, g: 255, b: 0 } },
-        { id: 3, name: "Hayden", color: { r: 0, g: 0, b: 255 } },
-        { id: 4, name: "Hunter", color: { r: 255, g: 0, b: 255 } },
+        { id: 0, name: "Jonathan", color: gameContext.colorList.yellow},
+        { id: 1, name: "Jessica", color: gameContext.colorList.red},
+        { id: 2, name: "Kate", color: gameContext.colorList.green },
+        { id: 3, name: "Hayden", color: gameContext.colorList.blue },
+        { id: 4, name: "Hunter", color: gameContext.colorList.pink  },
     ];
     gameContext.setPlayersAll(players);
 }
@@ -134,21 +134,13 @@ function chooseRound(round: number)
       <div className='round_header_left'><div className='back_arrow'><Arrow /><span>Back</span></div></div>
       <div className='round_header_center'>
         <div className='app_name'>PuttPuttGo</div>
-        <div className='course_name'>Castle Golf</div>
+        <div className='course_name'>PuttPutt-Go</div>
         <div className='course_info'>
-          <div className='round'>Hole #{gameContext.getCurrentHole()}</div>
-          <div className='players'>{gameContext.getPlayers().length} Players</div>
+          <div className='round'>HOLE<span>#{gameContext.getCurrentHole()}</span></div>
+          <div className='players'>PLAYERS<span>{gameContext.getPlayers().length}</span></div>
         </div>
       </div>
-      <div className='round_header_right'></div>
-    </div>
-
-    <div className='players_container'>
-
-      {gameContext.getPlayers().map((player, i) => {
-        return <PlayerCard player={player} key={i} />
-      })}
-
+      <div className='round_header_right' onClick={() => gameContext.clearLocalStorage()}>clear</div>
     </div>
 
 
@@ -169,6 +161,17 @@ function chooseRound(round: number)
             
       </div>
     </div>
+
+    <div className='players_container'>
+
+      {gameContext.getPlayers().map((player, i) => {
+        return <PlayerCard player={player} key={i} />
+      })}
+
+    </div>
+
+
+   
     <div className='fixed_buttons_container container_bottom'>
       
       <div className='buttons_container'>
@@ -202,7 +205,7 @@ function chooseRound(round: number)
 
         </div>
         <div className='buttons_right'>
-          <div className='top_cell' onClick={nextPlayerTurn}>NEXT<br />PLAYER</div>
+          {/* <div className='top_cell' onClick={nextPlayerTurn}>NEXT<br />PLAYER</div> */}
           <div className='bottom_cell' onClick={toggleNextHole}>NEXT<br />HOLE</div>
         </div>
       </div>

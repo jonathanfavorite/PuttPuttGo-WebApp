@@ -5,6 +5,8 @@ import ScoreModel from "../models/ScoreModel";
 import HoleModel from "../models/HoleModel";
 import LeaderboardModel from "../models/LeaderboardModel";
 import GameModel from "../models/GameModel";
+import RGBModel from "../models/RGBModel";
+import RGBSpecific from "../models/RGBSpecific";
 
 interface GameContextProps {
     resetAll: () => void;
@@ -34,9 +36,37 @@ interface GameContextProps {
     getScoreByHoleAndPlayer: (hole: number, playerID: number) => number;
     getAllPlayersScores: () => LeaderboardModel[];
 
+    clearLocalStorage: () => void;
+
+    colorList: RGBSpecific;
+
 }
 
 const GameContext = createContext<GameContextProps>(null as any);
+
+let colorList : RGBSpecific = {
+    yellow: {
+        name: "Yellow", 
+        r: 252, g: 234, b: 36,
+    },
+    red: {
+        name: "Red",
+        r: 249, g: 70, b: 70,
+    },
+    green: {
+        name: "Green",
+        r: 135, g: 243, b: 87,
+    },
+    blue: {
+        name: "Blue",
+        r: 0, g: 126, b: 244,
+    },
+    pink: {
+        name: "Pink",
+        r: 235, g: 73, b: 218,
+    }
+}
+
 
 function GameContextProvider(props: any) {
     const [course, setCourse] = useState<CourseModel>(null as any);
@@ -46,6 +76,8 @@ function GameContextProvider(props: any) {
     const [currentHole, setCurrentHole] = useState<number>(0);
     const [currentPlayer, setCurrentPlayer] = useState<number>(0);
     const [foundLocalStorage, setFoundLocalStorage] = useState<boolean>(false);
+
+    
 
     useEffect(() => {
         // check if players exists in localstorage
@@ -89,6 +121,10 @@ function GameContextProvider(props: any) {
         setCourse(null as any);
         localStorage.clear();
     };
+
+    const clearLocalStorage = () => {
+        localStorage.clear();
+    }
 
     const updateCourse = (course: CourseModel) => {
         setCourse(old =>course);
@@ -244,6 +280,8 @@ function GameContextProvider(props: any) {
         setScoresAll: setScoresAll,
         getScoreByHoleAndPlayer: getScoreByHoleAndPlayer,
         getAllPlayersScores: getAllPlayersScores,
+        colorList: colorList,
+        clearLocalStorage: clearLocalStorage
     };
 
     return (

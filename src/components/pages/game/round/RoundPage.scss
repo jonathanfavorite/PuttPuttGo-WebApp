@@ -5,7 +5,7 @@
   flex: 1;
   display: flex;
   color: #fff;
-  background: #212023;
+  background: #425044;
   max-width:100vw;
 
 
@@ -17,11 +17,17 @@
         display: flex;
         align-items: center;
         border-top: 1px solid #0a0a0b;
-        background: #232225;
-
+        border-bottom: 1px solid #0a0a0b;
+        background: #33683a;
+        height:8vh;
+      box-sizing: border-box;
         .hole_text {
             padding-left: 3vw;
-            width:12vw;
+            
+            font-size:23px;
+            
+            color:#fff;
+            text-transform: uppercase;
             font-weight: bold;
             display: inline-block;
         }
@@ -31,8 +37,8 @@
         overflow-x: auto;
         white-space: nowrap;
         max-width:82vw;
-    
         
+       
         &::-webkit-scrollbar {
           display: none;
         }
@@ -43,19 +49,33 @@
           display: inline-block;
           padding: 8px 20px;
           vertical-align: top;
-          font-weight: bold;
-          color: #fff;
+         
+          border-radius: 100px;
+          color: #87f357;
+
+          &:first-child {
+            margin-left: 10px;
+          }
+          
         }
 
         .active {
-          background:#7d50ef;
-          color:#fff;
+          background:#425044;
+          font-weight: bold;
+          font-size:25px;
+          color: #fff;
       }
+
+      
         
       }
     }
     .players_container {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       &::-webkit-scrollbar {
         display: none;
       }
@@ -64,10 +84,10 @@
     .container_bottom {
       display: flex;
       flex: 1;
-      background: #302f34;
+      background: #33683a;
       border-top: 1px solid #0a0a0b;
 
-      max-height: 25vh;
+      max-height: 18vh;
       color: #fff;
       .buttons_container {
         flex: 1;
@@ -95,13 +115,13 @@
           }
 
           .top_cell {
-            color: #92ff9f;
-            
+            color: #fff;
+            background:#5f3f67;
             border-bottom: 1px solid #0a0a0b;
           }
           .bottom_cell {
-           
-            color: #7d50ef;
+            background:#199a53;
+            color: #fff;
           }
         }
       }
@@ -121,6 +141,8 @@
       width: 33.3%;
       font-size:25px;
       vertical-align: middle;
+          color: #87f357;
+      
       text-align: center;
       border-right: 1px solid #0a0a0b;
       border-top: 1px solid #0a0a0b;
@@ -150,11 +172,13 @@
       span {
         margin-left:5px;
         font-size:12px;
+        font-weight: bold;
+        text-transform: uppercase;
         color:#777;
       }
       svg {
        
-        width:30px;
+        width:20px;
         transform: rotate(-90deg);
  
         fill: #777;
@@ -164,6 +188,7 @@
   .round_header_right {
     flex:1;
     display:flex;
+    opacity: 0;
     justify-content: flex-end;
   }
   .round_header_center {
@@ -173,21 +198,34 @@
     justify-content: center;
     align-items: center;
     .app_name {
+     
       font-size:12px;
+      display: none;
     }
     .course_name {
+      padding-top:10px;
       font-size:30px;
       font-weight: bold;
     }
     .course_info {
       margin-top:3px;
       display:flex;
-      font-size:13px;
+      font-size:11px;
       .round {
 
       }
       .players {
         margin-left:10px;
+      }
+      .round, .players {
+        font-weight: bold;
+        span {
+          display:inline-block;
+          padding:1px 5px;
+       
+          color: #87f357;
+          
+        }
       }
     }
   }
