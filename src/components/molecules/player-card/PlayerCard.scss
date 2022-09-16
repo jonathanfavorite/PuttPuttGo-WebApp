@@ -1,0 +1,52 @@
+.player_card_wrap {
+    display:flex;
+    padding:5px 20px;
+    align-items: center;
+    transition: all 0.05s ease-in-out;
+    opacity: 0.5;
+    .ball {
+        width:20vw;
+        max-width:40px;
+        padding-right:5vw;
+        svg {
+            display: block;
+        }
+    }
+    .description {
+        flex:1;
+        padding-right:5vw;
+        .myturn_text {
+            font-size:12px;
+            font-weight: bold;
+            font-style: italic;
+        }
+        .name {
+            font-size:30px;
+            font-weight: bold;
+        }
+        .score_total {
+            margin-top:5px;
+        }
+    }
+    .score_box {
+        display:flex;
+        align-items:flex-end;
+        .round_score {
+            display: flex;
+            font-size:30px;
+            font-weight: bold;
+            background:#2d2b2f;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            width:15vw;
+            box-sizing: 0px 0px 5px #000;
+            aspect-ratio: 1/1;
+            
+        }
+    }
+}
+.myturn {
+    opacity: 1;
+    background:#302f33;
+}

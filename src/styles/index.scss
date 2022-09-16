@@ -1,0 +1,26 @@
+body {
+  margin: 0 auto;
+  font-size: 18px;
+  line-height: 25px;
+  width: 100%;
+  position: fixed;
+  height: calc(100vh - calc(100vh - 100%));
+  background-color: #efefef;
+  display: flex;
+  min-height: stretch;
+  overflow: hidden;
+  justify-content: center;
+}
+
+html {
+  height: stretch;
+}
+
+#master-container {
+  display: flex;
+  flex-grow: 1;
+  margin: 0 auto;
+  width: 100vw;
+  background: #fff;
+  height: 100%;
+}

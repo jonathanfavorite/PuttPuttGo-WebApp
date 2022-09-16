@@ -1,0 +1,194 @@
+* {
+  transition: all .05s ease-in-out;
+}
+.container_wrap {
+  flex: 1;
+  display: flex;
+  color: #fff;
+  background: #212023;
+  max-width:100vw;
+
+
+  .round_page {
+    display: flex;
+    flex: 0 0 100%;
+    flex-direction: column;
+    .round_container {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid #0a0a0b;
+        background: #232225;
+
+        .hole_text {
+            padding-left: 3vw;
+            width:12vw;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+      .round_list {
+        
+        overflow-x: auto;
+        white-space: nowrap;
+        max-width:82vw;
+    
+        
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+       
+       
+        .round_button {
+          display: inline-block;
+          padding: 8px 20px;
+          vertical-align: top;
+          font-weight: bold;
+          color: #fff;
+        }
+
+        .active {
+          background:#7d50ef;
+          color:#fff;
+      }
+        
+      }
+    }
+    .players_container {
+      flex: 1;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+        overflow-y: scroll;
+    }
+    .container_bottom {
+      display: flex;
+      flex: 1;
+      background: #302f34;
+      border-top: 1px solid #0a0a0b;
+
+      max-height: 25vh;
+      color: #fff;
+      .buttons_container {
+        flex: 1;
+        display: flex;
+        .buttons_main {
+          flex: 1;
+          display: flex;
+          position: relative;
+        }
+        .buttons_right {
+          width: 30vw;
+          display: flex;
+          flex-direction: column;
+
+          .top_cell,
+          .bottom_cell {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+          }
+
+          .top_cell {
+            color: #92ff9f;
+            
+            border-bottom: 1px solid #0a0a0b;
+          }
+          .bottom_cell {
+           
+            color: #7d50ef;
+          }
+        }
+      }
+    }
+  }
+}
+
+.buttons_table {
+  flex: 1;
+
+  display: table;
+  .table_row {
+    display: table-row;
+
+    .table_cell {
+      display: table-cell;
+      width: 33.3%;
+      font-size:25px;
+      vertical-align: middle;
+      text-align: center;
+      border-right: 1px solid #0a0a0b;
+      border-top: 1px solid #0a0a0b;
+    }
+  }
+  .top_cell {
+    .table_cell {
+      border-top: 0;
+    }
+  }
+}
+
+
+.round_header {
+  display:flex;
+  position: sticky;
+  align-items: center;
+  padding:10px;
+  padding-top:10px;
+  .round_header_left {
+    flex:1;
+    display:flex;
+    .back_arrow {
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        margin-left:5px;
+        font-size:12px;
+        color:#777;
+      }
+      svg {
+       
+        width:30px;
+        transform: rotate(-90deg);
+ 
+        fill: #777;
+      }
+    }
+  }
+  .round_header_right {
+    flex:1;
+    display:flex;
+    justify-content: flex-end;
+  }
+  .round_header_center {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .app_name {
+      font-size:12px;
+    }
+    .course_name {
+      font-size:30px;
+      font-weight: bold;
+    }
+    .course_info {
+      margin-top:3px;
+      display:flex;
+      font-size:13px;
+      .round {
+
+      }
+      .players {
+        margin-left:10px;
+      }
+    }
+  }
+}
