@@ -12,12 +12,12 @@
             align-items: center;
             svg {
                 height:30px;
-                fill: #232b25;
+                fill: #141a13;
                 transform: rotate(-90deg);
             }
             span {
                 margin-left:10px;
-                color:#232b25;
+                color:#141a13;
                 font-weight: bold;
             }
         }
@@ -28,6 +28,9 @@
         justify-content: center;
         flex-direction: column;
         align-items: center;
+        background:#2f4927;
+        border-top:1px solid #141a13;
+        border-bottom:1px solid #141a13;
         .header {
             font-size: 40px;
             color:#87f357;
@@ -35,6 +38,7 @@
         }
         .subheader {
             margin-top:20px;
+            color:#0b100a;
         }
     }
     .players_list {
