@@ -110,8 +110,8 @@ function RoundScoreButtons() {
                     {/* <div className='top_cell' onClick={nextPlayerTurn}>NEXT<br />PLAYER</div> */}
                     <div className="bottom_cell"
                     style={{
-                        backgroundColor: `rgba(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b}, ${0.6})`,
-                        color: "#fff"
+                        backgroundColor: `rgba(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b}, ${1})`,
+                        color: !IsColorDark(defaultColors) ? "white" : "black"
                     }}
                     onClick={toggleNextHole}>
                         NEXT

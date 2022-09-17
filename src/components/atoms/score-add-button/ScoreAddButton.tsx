@@ -42,7 +42,7 @@ function ScoreAddButton(props: ScoreAddProps) {
         <div
             className="table_cell"
             style={{
-                backgroundColor: `rgba(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b}, ${1})`,
+                backgroundColor: `rgba(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b}, ${0.7})`,
             }}
             onClick={() => props.handleScoreAdd(props.score)}
         >
