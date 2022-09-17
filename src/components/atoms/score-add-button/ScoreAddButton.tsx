@@ -36,7 +36,7 @@ function ScoreAddButton(props: ScoreAddProps) {
         b: 255
     }
 
-        if(gameContext.getCurrentPlayer().color) {
+        if(gameContext.getCurrentPlayer()) {
             defaultColors = gameContext.getCurrentPlayer().color!;
         }
 

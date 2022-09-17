@@ -60,7 +60,7 @@ function RoundScoreButtons() {
         b: 255
     }
 
-        if(gameContext.getCurrentPlayer().color) {
+        if(gameContext.getCurrentPlayer()) {
             defaultColors = gameContext.getCurrentPlayer().color!;
         }
 

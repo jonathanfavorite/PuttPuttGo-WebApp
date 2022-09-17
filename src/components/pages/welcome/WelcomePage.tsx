@@ -61,9 +61,13 @@ function addDummyHoles() {
 }
 
 useEffect(() => {
+
+  if(gameContext.getPlayers().length <= 0) {
     addDummyCourse();
     addDummyPlayers();
     addDummyHoles();
+  }
+  
 
    
 }, []);

@@ -47,7 +47,7 @@ function RoundContainer() {
         g: 255,
         b: 255
     }
-    if(gameContext.getCurrentPlayer().color) {
+    if(gameContext.getCurrentPlayer()) {
         defaultColors = gameContext.getCurrentPlayer().color!;
     }
      

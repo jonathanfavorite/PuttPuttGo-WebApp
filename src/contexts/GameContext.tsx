@@ -120,7 +120,11 @@ function GameContextProvider(props: any) {
 
     // Implementation of the GameContextProps
     const resetAll = () => {
-        setCourse(null as any);
+        setPlayers([]);
+        setScores([]);
+        setHoles([]);
+        setCurrentHole(0);
+        setCurrentPlayer(0);
         localStorage.clear();
     };
 
@@ -256,7 +260,15 @@ function GameContextProvider(props: any) {
     };
 
     const currentGameExists = () => {
-        if(foundLocalStorage && players.length > 0) {
+        // if(foundLocalStorage && players.length > 0) {
+        //     return true;
+        // }
+        if(foundLocalStorage) {
+            if(players.length > 0) {
+                return true;
+            }
+        }
+        if(players.length > 0) {
             return true;
         }
         return false;

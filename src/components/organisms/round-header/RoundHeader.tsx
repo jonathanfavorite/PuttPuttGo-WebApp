@@ -7,6 +7,10 @@ import './RoundHeader.scss'
 function RoundHeader() {
     const gameContext = useContext(GameContext);
     const navigate = useNavigate();
+    function clickedReset() {
+        gameContext.resetAll();
+        navigate("/");
+    }
   return (
     <div className='round_header'>
       <div className='round_header_left'><div className='back_arrow'><Arrow /><span onClick={() => navigate("/")}>Back</span></div></div>
@@ -18,7 +22,7 @@ function RoundHeader() {
           <div className='players'>PLAYERS<span>{gameContext.getPlayers().length}</span></div>
         </div>
       </div>
-      <div className='round_header_right' onClick={() => gameContext.clearLocalStorage()}>clear</div>
+      <div className='round_header_right' onClick={clickedReset}>clear</div>
     </div>
   )
 }
