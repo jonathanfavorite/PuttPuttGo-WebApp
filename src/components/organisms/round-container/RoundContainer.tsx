@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { GameContext } from "../../../contexts/GameContext";
 import RGBModel from "../../../models/RGBModel";
 import './RoundContainer.scss';
@@ -25,6 +26,16 @@ function IsColorDark(rgb: RGBModel) {
   
 function RoundContainer() {
     const gameContext = useContext(GameContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if(gameContext.getPlayers().length <= 0) {
+
+            navigate("/");
+        }
+       
+    }, []);
+
 
     function chooseRound(round: number) {
         gameContext.updateCurrentHole(round);
@@ -39,6 +50,9 @@ function RoundContainer() {
     if(gameContext.getCurrentPlayer().color) {
         defaultColors = gameContext.getCurrentPlayer().color!;
     }
+     
+  
+   
     
     return (
         <div className="round_container">

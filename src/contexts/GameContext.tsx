@@ -38,6 +38,8 @@ interface GameContextProps {
 
     clearLocalStorage: () => void;
 
+    currentGameExists: () => boolean;
+
     colorList: RGBSpecific;
 
 }
@@ -123,7 +125,7 @@ function GameContextProvider(props: any) {
     };
 
     const clearLocalStorage = () => {
-        localStorage.clear();
+        localStorage.removeItem("game");
     }
 
     const updateCourse = (course: CourseModel) => {
@@ -253,6 +255,13 @@ function GameContextProvider(props: any) {
         return total;
     };
 
+    const currentGameExists = () => {
+        if(foundLocalStorage && players.length > 0) {
+            return true;
+        }
+        return false;
+    }
+
     let contextValues: GameContextProps = {
         resetAll: resetAll,
 
@@ -281,7 +290,8 @@ function GameContextProvider(props: any) {
         getScoreByHoleAndPlayer: getScoreByHoleAndPlayer,
         getAllPlayersScores: getAllPlayersScores,
         colorList: colorList,
-        clearLocalStorage: clearLocalStorage
+        clearLocalStorage: clearLocalStorage,
+        currentGameExists: currentGameExists
     };
 
     return (

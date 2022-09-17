@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { GameContext } from "../../../contexts/GameContext";
 import RGBModel from "../../../models/RGBModel";
 import ScoreAddButton from "../../atoms/score-add-button/ScoreAddButton";
@@ -59,9 +59,13 @@ function RoundScoreButtons() {
         g: 255,
         b: 255
     }
-    if(gameContext.getCurrentPlayer().color) {
-        defaultColors = gameContext.getCurrentPlayer().color!;
-    }
+
+        if(gameContext.getCurrentPlayer().color) {
+            defaultColors = gameContext.getCurrentPlayer().color!;
+        }
+
+
+   
 
     return (
         <div className="round_buttons_wrap fixed_buttons_container container_bottom">
@@ -71,7 +75,7 @@ function RoundScoreButtons() {
                         <div className="table_row top_cell">
                             {layout[0].map((score, index) => {
                                 return (
-                                    <ScoreAddButton
+                                    <ScoreAddButton key={index}
                                         score={score}
                                         handleScoreAdd={() =>
                                             handleScoreAdd(score)
@@ -83,7 +87,7 @@ function RoundScoreButtons() {
                         <div className="table_row">
                             {layout[1].map((score, index) => {
                                 return (
-                                    <ScoreAddButton
+                                    <ScoreAddButton key={index}
                                         score={score}
                                         handleScoreAdd={() =>
                                             handleScoreAdd(score)
@@ -95,7 +99,7 @@ function RoundScoreButtons() {
                         <div className="table_row">
                             {layout[2].map((score, index) => {
                                 return (
-                                    <ScoreAddButton
+                                    <ScoreAddButton key={index}
                                         score={score}
                                         handleScoreAdd={() =>
                                             handleScoreAdd(score)

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { GameContext } from "../../../contexts/GameContext";
 import RGBModel from "../../../models/RGBModel";
 
@@ -35,9 +35,12 @@ function ScoreAddButton(props: ScoreAddProps) {
         g: 255,
         b: 255
     }
-    if(gameContext.getCurrentPlayer().color) {
-        defaultColors = gameContext.getCurrentPlayer().color!;
-    }
+
+        if(gameContext.getCurrentPlayer().color) {
+            defaultColors = gameContext.getCurrentPlayer().color!;
+        }
+
+    
     return (
         <div
             className="table_cell"
