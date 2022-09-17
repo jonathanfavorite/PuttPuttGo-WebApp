@@ -4,6 +4,10 @@ import HoleModel from '../../../../models/HoleModel';
 import PlayerModel from '../../../../models/PlayerModel';
 import { Arrow } from '../../../atoms/icons/Icons';
 import PlayerCard from '../../../molecules/player-card/PlayerCard';
+import RoundContainer from '../../../organisms/round-container/RoundContainer';
+import RoundHeader from '../../../organisms/round-header/RoundHeader';
+import RoundPlayersContainer from '../../../organisms/round-players-container/RoundPlayersContainer';
+import RoundScoreButtons from '../../../organisms/round-score-buttons/RoundScoreButtons';
 import './RoundPage.scss'
 
 function RoundPage() {
@@ -56,161 +60,25 @@ useEffect(() => {
 }, []);
 
 
-function nextPlayerTurn() {
-  gameContext.toggleNextPlayer();
-}
-function toggleNextHole() {
-  gameContext.toggleNextHole();
-}
-function handleScoreAdd(score: number) {
-  let currentPlayer = gameContext.getCurrentPlayer();
-  let currentCourse = gameContext.getCourse().id;
-  let currentHole = gameContext.getCurrentHole();
-  gameContext.addScore({ playerID: currentPlayer.id, holeID: currentHole, score: score, courseID: currentCourse });
-  gameContext.toggleNextPlayer();
-}
-function chooseRound(round: number)
-{
-  gameContext.updateCurrentHole(round);
-  gameContext.setCurrentPlayer(0);
-}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  function showHolesButtons() {
-    const holes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
-    return holes.map((hole, i) => {
-      return <div 
-              className={`round_button ${i === 0 ? 'active' : ''}`}
-               key={i}
-
-               >
-              {hole}
-            </div>
-    });
-  }
-  function showScoreButtons() {
-    let buttons = [];
-    let scores = [-1, 0, 1, 2, 3, 4, 5, 6];
-    for (let i = 0; i < scores.length; i++) {
-        buttons.push(
-            <div className='round_button active' key={i}>
-                {scores[i]}
-            </div>
-        );
-    }
-    return buttons;
-}
 
   return (
     <div className='container_wrap'>
     <div className="round_page">
     
-    <div className='round_header'>
-      <div className='round_header_left'><div className='back_arrow'><Arrow /><span>Back</span></div></div>
-      <div className='round_header_center'>
-        <div className='app_name'>PuttPuttGo</div>
-        <div className='course_name'>PuttPutt-Go</div>
-        <div className='course_info'>
-          <div className='round'>HOLE<span>#{gameContext.getCurrentHole()}</span></div>
-          <div className='players'>PLAYERS<span>{gameContext.getPlayers().length}</span></div>
-        </div>
-      </div>
-      <div className='round_header_right' onClick={() => gameContext.clearLocalStorage()}>clear</div>
-    </div>
+    <RoundHeader />
 
+    <RoundContainer />
+    
 
-    <div className='round_container'>
-      <div className='hole_text'>Hole</div>
-      <div className='round_list'>
-        {gameContext.getHoles().map((hole, i) => {
+    <RoundPlayersContainer />
 
-          return <div 
-          className={`round_button ${gameContext.getCurrentHole() === i + 1 ? 'active' : ''}`} 
-          key={i}
-          onClick={() => chooseRound(i + 1)}
-          >
-            {hole.number}
-          </div>
-          
-        })}
-            
-      </div>
-    </div>
-
-    <div className='players_container'>
-
-      {gameContext.getPlayers().map((player, i) => {
-        return <PlayerCard player={player} key={i} />
-      })}
-
-    </div>
-
-
+    <RoundScoreButtons />
    
-    <div className='fixed_buttons_container container_bottom'>
-      
-      <div className='buttons_container'>
-        <div className='buttons_main'>
-      
-          <div className='buttons_table'>
-            <div className='table_row top_cell'>
-            <div className='table_cell' onClick={() => handleScoreAdd(1)}><span>1</span></div>
-            <div className='table_cell' onClick={() => handleScoreAdd(2)}><span>2</span></div>
-
-            <div className='table_cell' onClick={() => handleScoreAdd(3)}><span>3</span></div>
-      
-            </div>
-            <div className='table_row'>
-            <div className='table_cell' onClick={() => handleScoreAdd(4)}><span>4</span></div>
-            <div className='table_cell' onClick={() => handleScoreAdd(5)}><span>5</span></div>
-            <div className='table_cell' onClick={() => handleScoreAdd(6)}><span>6</span></div>
-           
-              
-              
-              
-            </div>
-            <div className='table_row'>
-            <div className='table_cell' onClick={() => handleScoreAdd(-1)}><span>-1</span></div>
-           
-            <div className='table_cell' onClick={() => handleScoreAdd(7)}><span>7</span></div>
-            <div className='table_cell' onClick={() => handleScoreAdd(0)}><span>0</span></div>
-              
-            </div>
-          </div>
-
-        </div>
-        <div className='buttons_right'>
-          {/* <div className='top_cell' onClick={nextPlayerTurn}>NEXT<br />PLAYER</div> */}
-          <div className='bottom_cell' onClick={toggleNextHole}>NEXT<br />HOLE</div>
-        </div>
-      </div>
-
-    </div>
+    
 </div>
 </div>
   )

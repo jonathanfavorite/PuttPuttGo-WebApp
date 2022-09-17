@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import DebugPage from "./components/pages/debug/DebugPage";
 import WelcomePage from "./components/pages/welcome/WelcomePage";
 import RoundPage from "./components/pages/game/round/RoundPage";
+import PlayersPage from "./components/pages/players/PlayersPage";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -17,7 +18,9 @@ root.render(
             <div id="master-container">
             <Routes>
                 <Route path="/debug" element={<DebugPage />} />
-                <Route path='/' element={<RoundPage />} />
+                <Route path="/" element={<WelcomePage />} />
+                <Route path="/players" element={<PlayersPage />} />
+                <Route path='/game' element={<RoundPage />} />
             </Routes>
             </div>
         </GameContextProvider>

@@ -1,0 +1,74 @@
+.round_header {
+    display:flex;
+    position: sticky;
+    align-items: center;
+    padding:10px;
+    padding-top:10px;
+    .round_header_left {
+      flex:1;
+      display:flex;
+      .back_arrow {
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          margin-left:5px;
+          font-size:12px;
+          font-weight: bold;
+          text-transform: uppercase;
+          color:#777;
+        }
+        svg {
+         
+          width:20px;
+          transform: rotate(-90deg);
+   
+          fill: #777;
+        }
+      }
+    }
+    .round_header_right {
+      flex:1;
+      display:flex;
+      opacity: 0;
+      justify-content: flex-end;
+    }
+    .round_header_center {
+  
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .app_name {
+       
+        font-size:12px;
+        display: none;
+      }
+      .course_name {
+        padding-top:10px;
+        font-size:30px;
+        font-weight: bold;
+      }
+      .course_info {
+        margin-top:3px;
+        display:flex;
+        font-size:11px;
+        .round {
+  
+        }
+        .players {
+          margin-left:10px;
+        }
+        .round, .players {
+          font-weight: bold;
+          span {
+            display:inline-block;
+            padding:1px 5px;
+         
+            color: #87f357;
+            
+          }
+        }
+      }
+    }
+  }

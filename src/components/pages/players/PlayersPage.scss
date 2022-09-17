@@ -1,0 +1,51 @@
+.players_page {
+    display: flex;
+    flex:1;
+    background-color: #33683a;
+    color:#fff;
+    flex-direction: column;
+    .top_container {
+        display: flex;
+        padding:10px;
+        .backbutton {
+            display: flex;
+            align-items: center;
+            svg {
+                height:30px;
+                fill: #232b25;
+                transform: rotate(-90deg);
+            }
+            span {
+                margin-left:10px;
+                color:#232b25;
+                font-weight: bold;
+            }
+        }
+    }
+    .header_container {
+        padding:20px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        .header {
+            font-size: 40px;
+            color:#87f357;
+            font-weight: bold;
+        }
+        .subheader {
+            margin-top:20px;
+        }
+    }
+    .players_list {
+        flex:1;
+        display: flex;
+    }
+    .bottom_container {
+        display: flex;
+        justify-content: center;
+        padding-bottom:20px;
+        color:#87f357;
+        align-items: center;
+    }
+}
