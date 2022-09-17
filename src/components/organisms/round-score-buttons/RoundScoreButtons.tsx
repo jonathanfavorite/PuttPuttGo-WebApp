@@ -1,29 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { GameContext } from "../../../contexts/GameContext";
+import { isColorDark } from "../../../helpers/ColorHelper";
 import RGBModel from "../../../models/RGBModel";
 import ScoreAddButton from "../../atoms/score-add-button/ScoreAddButton";
 import "./RoundScoreButtons.scss";
-
-
-
-function IsColorDark(rgb: RGBModel) {
-    // Variables for red, green, blue values
-    var r, g, b, hsp;
-  
-    r = rgb.r;
-    g = rgb.g;
-    b = rgb.b;
-  
-    // HSP (Highly Sensitive Poo) equation from http://alienryderflex.com/hsp.html
-    hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
-  
-    // Using the HSP value, determine whether the color is light or dark
-    if (hsp > 127.5) {
-        return true;
-    } else {
-        return false;
-    }
-  }
 
 function RoundScoreButtons() {
     const gameContext = useContext(GameContext);
@@ -115,7 +95,7 @@ function RoundScoreButtons() {
                     <div className="bottom_cell"
                     style={{
                         backgroundColor: `rgba(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b}, ${1})`,
-                        color: !IsColorDark(defaultColors) ? "white" : "black"
+                        color: !isColorDark(defaultColors) ? "white" : "black"
                     }}
                     onClick={toggleNextHole}>
                         NEXT

@@ -1,28 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GameContext } from "../../../contexts/GameContext";
+import { isColorDark } from "../../../helpers/ColorHelper";
 import RGBModel from "../../../models/RGBModel";
 import './RoundContainer.scss';
 
-
-function IsColorDark(rgb: RGBModel) {
-    // Variables for red, green, blue values
-    var r, g, b, hsp;
-  
-    r = rgb.r;
-    g = rgb.g;
-    b = rgb.b;
-  
-    // HSP (Highly Sensitive Poo) equation from http://alienryderflex.com/hsp.html
-    hsp = Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
-  
-    // Using the HSP value, determine whether the color is light or dark
-    if (hsp > 127.5) {
-        return true;
-    } else {
-        return false;
-    }
-  }
   
 function RoundContainer() {
     const gameContext = useContext(GameContext);
@@ -62,7 +44,7 @@ function RoundContainer() {
                     let isActive = gameContext.getCurrentHole() === i + 1;
                     let activeStyle = {
                         backgroundColor: `rgba(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b}, ${1})`,
-                        color: !IsColorDark(defaultColors) ? "#fff" : "#000"
+                        color: !isColorDark(defaultColors) ? "#fff" : "#000"
                     }
                     return (
                         <div
