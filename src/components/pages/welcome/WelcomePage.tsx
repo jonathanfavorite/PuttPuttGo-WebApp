@@ -24,7 +24,7 @@ function WelcomePage() {
       
   function addDummyPlayers() {
     let players: PlayerModel[] = [
-        { id: 0, name: "Jonathan", color: gameContext.colorList.yellow},
+        { id: 0, name: "Jonathan", color: gameContext.colorList.purple},
         { id: 1, name: "Jessica", color: gameContext.colorList.red},
         { id: 2, name: "Kate", color: gameContext.colorList.green },
         { id: 3, name: "Hayden", color: gameContext.colorList.blue },

@@ -18,13 +18,17 @@ function RoundScoreButtons() {
         let currentPlayer = gameContext.getCurrentPlayer();
         let currentCourse = gameContext.getCourse().id;
         let currentHole = gameContext.getCurrentHole();
+       
         gameContext.addScore({
             playerID: currentPlayer.id,
             holeID: currentHole,
             score: score,
             courseID: currentCourse,
         });
+
         gameContext.toggleNextPlayer();
+
+
     }
 
     // How the buttons are displayed on the screen
@@ -34,18 +38,15 @@ function RoundScoreButtons() {
         [-1, 7, 0],
     ];
 
-    let defaultColors : RGBModel = {
+    let defaultColors: RGBModel = {
         r: 255,
         g: 255,
-        b: 255
+        b: 255,
+    };
+
+    if (gameContext.getCurrentPlayer()) {
+        defaultColors = gameContext.getCurrentPlayer().color!;
     }
-
-        if(gameContext.getCurrentPlayer()) {
-            defaultColors = gameContext.getCurrentPlayer().color!;
-        }
-
-
-   
 
     return (
         <div className="round_buttons_wrap fixed_buttons_container container_bottom">
@@ -55,7 +56,8 @@ function RoundScoreButtons() {
                         <div className="table_row top_cell">
                             {layout[0].map((score, index) => {
                                 return (
-                                    <ScoreAddButton key={index}
+                                    <ScoreAddButton
+                                        key={index}
                                         score={score}
                                         handleScoreAdd={() =>
                                             handleScoreAdd(score)
@@ -67,7 +69,8 @@ function RoundScoreButtons() {
                         <div className="table_row">
                             {layout[1].map((score, index) => {
                                 return (
-                                    <ScoreAddButton key={index}
+                                    <ScoreAddButton
+                                        key={index}
                                         score={score}
                                         handleScoreAdd={() =>
                                             handleScoreAdd(score)
@@ -79,7 +82,8 @@ function RoundScoreButtons() {
                         <div className="table_row">
                             {layout[2].map((score, index) => {
                                 return (
-                                    <ScoreAddButton key={index}
+                                    <ScoreAddButton
+                                        key={index}
                                         score={score}
                                         handleScoreAdd={() =>
                                             handleScoreAdd(score)
@@ -92,12 +96,18 @@ function RoundScoreButtons() {
                 </div>
                 <div className="buttons_right">
                     {/* <div className='top_cell' onClick={nextPlayerTurn}>NEXT<br />PLAYER</div> */}
-                    <div className="bottom_cell"
-                    style={{
-                        backgroundColor: `rgba(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b}, ${1})`,
-                        color: !isColorDark(defaultColors) ? "white" : "black"
-                    }}
-                    onClick={toggleNextHole}>
+                    <div
+                        className="bottom_cell"
+                        style={{
+                            backgroundColor: `rgba(${defaultColors.r}, ${
+                                defaultColors.g
+                            }, ${defaultColors.b}, ${1})`,
+                            color: !isColorDark(defaultColors)
+                                ? "white"
+                                : "black",
+                        }}
+                        onClick={toggleNextHole}
+                    >
                         NEXT
                         <br />
                         HOLE

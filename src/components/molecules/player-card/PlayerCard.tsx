@@ -72,11 +72,15 @@ function PlayerCard(props: PlayerProps) {
                 backgroundColor: myTurn
                     ? `rgba(${colors.r}, ${colors.g}, ${colors.b}, 0.2)`
                     : "",
-                backgroundBlendMode: myTurn ? "darken" : "",
+                backgroundBlendMode: myTurn ? "darken" : ""
             }}
         >
             <div className="ball">
+                <div className="golf_ball_wrap" style={{
+                    animationPlayState: myTurn ? "running" : "paused"
+                }}>
                 <GolfBall r={colors.r} g={colors.g} b={colors.b} />
+                </div>
             </div>
             <div className="description">
                 {myTurn && <div className="myturn_text">Your Turn!</div>}
@@ -96,7 +100,7 @@ function PlayerCard(props: PlayerProps) {
                     style={{
                         backgroundColor: myTurn
                             ? `rgb(${colors.r}, ${colors.g}, ${colors.b})`
-                            : "#2d2b2f",
+                            : `rgba(${colors.r}, ${colors.g}, ${colors.b}, 0.2)`,
                     }}
                 >
                     <span

@@ -37,7 +37,9 @@ function RoundContainer() {
    
     
     return (
-        <div className="round_container">
+        <div className="round_container" style={{
+            backgroundColor: defaultColors ? `rgba(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b}, ${0.1})` : "#000000"
+        }}>
             <div className="hole_text">Hole</div>
             <div className="round_list">
                 {gameContext.getHoles().map((hole, i) => {

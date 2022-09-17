@@ -6,4 +6,6 @@ export default interface RGBSpecific {
     green?: RGBModel;
     blue?: RGBModel;
     pink?: RGBModel;
+    orange?: RGBModel;
+    purple?: RGBModel;
 }

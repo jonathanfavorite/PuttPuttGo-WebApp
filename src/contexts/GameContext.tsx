@@ -66,6 +66,14 @@ let colorList : RGBSpecific = {
     pink: {
         name: "Pink",
         r: 235, g: 73, b: 218,
+    },
+    orange: {
+        name: "Orange",
+        r: 254, g: 157, b: 63
+    },
+    purple: {
+        name: "Purple",
+        r: 180, g: 63, b: 254
     }
 }
 
