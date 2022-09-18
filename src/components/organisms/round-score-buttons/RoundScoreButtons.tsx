@@ -57,6 +57,11 @@ function RoundScoreButtons() {
         defaultColors = gameContext.getCurrentPlayer().color!;
     }
 
+    function finishGameClick() {
+        // alert
+        alert('Are you sure you want to finish this game?');
+    }
+
     useEffect(() => {
 
     });
@@ -134,12 +139,12 @@ function RoundScoreButtons() {
                         className="bottom_cell"
                         ref={nextHoleRef}
                         style={{
-                            backgroundColor: `#87f357`,
-                            color: "black"
+                            backgroundColor: `#40c84d`,
+                            color: "#2f4927"
                         }}
-                        onClick={toggleNextHole}
+                        onClick={finishGameClick}
                     >
-                        FINSIH
+                        FINISH
                         <br />
                         GAME
                     </div>
