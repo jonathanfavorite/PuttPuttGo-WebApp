@@ -1,57 +1,107 @@
 .round_container {
-    display: flex;
-    align-items: center;
-    border-top: 1px solid #0a0a0b;
-    border-bottom: 1px solid #0a0a0b;
-    background: #151816;
-    height:8vh;
-  box-sizing: border-box;
-    .hole_text {
-        padding-left: 3vw;
-        
-        font-size:23px;
-        
-        color:#fff;
-        text-transform: uppercase;
-        font-weight: bold;
-        display: inline-block;
-    }
+  height: 10vh;
+  display: flex;
+  width: 100vw;
+  flex-direction: row;
+  align-items: center;
 
+  .hole_text {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 23px;
+
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
   .round_list {
-    
+    align-items: center;
+    width: 100%;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
     overflow-x: auto;
-    white-space: nowrap;
-    max-width:82vw;
+    height: 45px;
 
-    
+    white-space: nowrap;
     &::-webkit-scrollbar {
       display: none;
     }
+    .real_list {
+      position: absolute;
+      left: 0;
+      align-items: center;
+      height: 45px;
+      vertical-align: middle;
 
-   
-   
-    .round_button {
-      display: inline-block;
-      padding: 8px 20px;
-      vertical-align: top;
-     
-      border-radius: 100px;
-      color: #87f357;
-
-      &:first-child {
-        margin-left: 10px;
+      .round_button {
+        display: inline-block;
+        padding: 8px 20px;
+        vertical-align: middle;
+        border-radius: 100px;
+        color: #87f357;
+        &:last-child {
+          margin-right: 10px;
+        }
       }
-      
+      .active {
+        background: #87f357;
+        font-weight: bold;
+        font-size: 25px;
+        color: #111;
+      }
     }
-
-    .active {
-      background:#425044;
-      font-weight: bold;
-      font-size:25px;
-      color: #fff;
-  }
-
-  
-    
   }
 }
+
+// .round_container {
+//     display: flex;
+//     align-items: center;
+//     border-top: 1px solid #0a0a0b;
+//     border-bottom: 1px solid #0a0a0b;
+//     background: #2f4927;
+//     height:8vh;
+//     .hole_text {
+//         padding-left: 3vw;
+
+//         font-size:23px;
+
+//         color:#fff;
+//         text-transform: uppercase;
+//         font-weight: bold;
+//         display: inline-block;
+//     }
+
+//   .round_list {
+
+//     overflow-x: auto;
+//     white-space: nowrap;
+//     max-width:82vw;
+
+//     &::-webkit-scrollbar {
+//       display: none;
+//     }
+
+//     .round_button {
+//       display: inline-block;
+//       padding: 8px 20px;
+//       vertical-align: top;
+
+//       border-radius: 100px;
+//       color: #87f357;
+
+//       &:first-child {
+//         margin-left: 10px;
+//       }
+
+//     }
+
+//     .active {
+//       background:#87f357;
+//       font-weight: bold;
+//       font-size:25px;
+//       color: #111;
+//   }
+
+//   }
+// }

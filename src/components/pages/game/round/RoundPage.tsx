@@ -28,7 +28,7 @@ function RoundPage() {
     return (
         <div className="container_wrap">
             <div className="round_page" style={{
-                backgroundColor: defaultColor ? `rgba(${defaultColor.r}, ${defaultColor.g}, ${defaultColor.b}, ${0.1})` : "#000000"
+                backgroundColor: defaultColor ? `rgba(${defaultColor.r}, ${defaultColor.g}, ${defaultColor.b}, ${0.0})` : "#000000"
             }}>
                 <RoundHeader />
 

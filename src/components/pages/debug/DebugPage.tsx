@@ -125,6 +125,7 @@ function DebugPage() {
     return (
         <>
 
+
 <div className="ball">{golfBall(255, 0, 0)}</div>
 <div className="ball">{golfBall(0, 255, 0)}</div>
 <div className="ball">{golfBall(0, 0, 255)}</div>

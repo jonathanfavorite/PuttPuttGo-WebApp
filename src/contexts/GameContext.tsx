@@ -197,8 +197,11 @@ function GameContextProvider(props: any) {
         }
 
         if (alreadyExists) {
-            setScores((old) => scores);
+            console.log("yes");
+            let oldScores = [...scores];
+            setScores((old) => oldScores);
         } else {
+            console.log("no");
             setScores((old) => [...scores, score]);
         }
     };
@@ -253,7 +256,7 @@ function GameContextProvider(props: any) {
             setCurrentHole(currentHole + 1);
             setCurrentPlayer(0);
         } else {
-            setCurrentHole(0);
+           // setCurrentHole(0);
         }
     };
     const holesRemaning = () => {

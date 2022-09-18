@@ -39,7 +39,7 @@ function RoundHeader() {
                         HOLE
                         <span
                             style={{
-                                color: `rgb(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b})`,
+                             //  color: `rgb(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b})`,
                             }}
                         >
                             #{gameContext.getCurrentHole()}
@@ -49,7 +49,7 @@ function RoundHeader() {
                         PLAYERS
                         <span
                             style={{
-                                color: `rgb(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b})`,
+                               // color: `rgb(${defaultColors.r}, ${defaultColors.g}, ${defaultColors.b})`,
                             }}
                         >
                             {gameContext.getPlayers().length}

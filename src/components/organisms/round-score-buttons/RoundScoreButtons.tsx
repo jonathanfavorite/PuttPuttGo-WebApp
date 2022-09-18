@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { createRef, useContext, useEffect, useRef } from "react";
 import { GameContext } from "../../../contexts/GameContext";
 import { isColorDark } from "../../../helpers/ColorHelper";
 import RGBModel from "../../../models/RGBModel";
@@ -7,6 +7,7 @@ import "./RoundScoreButtons.scss";
 
 function RoundScoreButtons() {
     const gameContext = useContext(GameContext);
+    const nextHoleRef  = useRef<HTMLDivElement>(null);
 
     function nextPlayerTurn() {
         gameContext.toggleNextPlayer();
@@ -26,7 +27,15 @@ function RoundScoreButtons() {
             courseID: currentCourse,
         });
 
-        gameContext.toggleNextPlayer();
+    
+        if(currentPlayer.id === gameContext.getPlayers().length  - 1) {
+        }
+        else
+        {
+            gameContext.toggleNextPlayer();
+        }
+
+
 
 
     }
@@ -47,6 +56,10 @@ function RoundScoreButtons() {
     if (gameContext.getCurrentPlayer()) {
         defaultColors = gameContext.getCurrentPlayer().color!;
     }
+
+    useEffect(() => {
+
+    });
 
     return (
         <div className="round_buttons_wrap fixed_buttons_container container_bottom">
@@ -98,6 +111,7 @@ function RoundScoreButtons() {
                     {/* <div className='top_cell' onClick={nextPlayerTurn}>NEXT<br />PLAYER</div> */}
                     <div
                         className="bottom_cell"
+                        ref={nextHoleRef}
                         style={{
                             backgroundColor: `rgba(${defaultColors.r}, ${
                                 defaultColors.g

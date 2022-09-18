@@ -17,7 +17,7 @@ function WelcomePage() {
         navigate("/players");
     }
     function rulesClick() {
-        navigate("/rules");
+        navigate("/test");
     }
 
 
