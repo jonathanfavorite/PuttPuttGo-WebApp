@@ -109,6 +109,7 @@ function RoundScoreButtons() {
                 </div>
                 <div className="buttons_right">
                     {/* <div className='top_cell' onClick={nextPlayerTurn}>NEXT<br />PLAYER</div> */}
+                    {gameContext.holesRemaning() < 0 || gameContext.getCurrentHole() != gameContext.getHoles().length && 
                     <div
                         className="bottom_cell"
                         ref={nextHoleRef}
@@ -126,6 +127,25 @@ function RoundScoreButtons() {
                         <br />
                         HOLE
                     </div>
+                    }
+
+{gameContext.holesRemaning() < 0 || gameContext.getCurrentHole() == gameContext.getHoles().length && 
+                    <div
+                        className="bottom_cell"
+                        ref={nextHoleRef}
+                        style={{
+                            backgroundColor: `#87f357`,
+                            color: "black"
+                        }}
+                        onClick={toggleNextHole}
+                    >
+                        FINSIH
+                        <br />
+                        GAME
+                    </div>
+                    }
+
+
                 </div>
             </div>
         </div>
