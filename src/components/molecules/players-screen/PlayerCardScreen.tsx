@@ -1,6 +1,6 @@
-import React, { forwardRef, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import GolfBall from "../../atoms/golf-ball/GolfBall";
-import "./PlayerCard.scss";
+import "./PlayerCardScreen.scss";
 import PlayerModel from "../../../models/PlayerModel";
 import RGBModel from "../../../models/RGBModel";
 import { GameContext } from "../../../contexts/GameContext";
@@ -8,11 +8,12 @@ import { isColorDark } from "../../../helpers/ColorHelper";
 
 interface PlayerProps {
     player: PlayerModel;
-    playerRefx: any;
+    deleteButtonClick: () => void;
+    click: (n: number) => void;
 }
 
 
-function PlayerCard(props: PlayerProps) {
+function PlayerScreenCard(props: PlayerProps) {
     let gameContext = useContext(GameContext);
 
     let colors: RGBModel = {
@@ -51,10 +52,8 @@ function PlayerCard(props: PlayerProps) {
         // conditionally set player_card_wrap class
 
         <div
-            data-id={props.player.id}
-            ref={props.playerRefx}
             onClick={() => gameContext.setCurrentPlayer(props.player.id)}
-            className={`player_card_wrap ${myTurn ? "myturn" : ""}`}
+            className={`player_screen_card_wrap ${myTurn ? "myturn" : ""}`}
             style={{
                 backgroundColor: myTurn
                     ? `rgba(${colors.r}, ${colors.g}, ${colors.b}, 0.2)`
@@ -111,4 +110,4 @@ function PlayerCard(props: PlayerProps) {
     );
 }
 
-export default PlayerCard;
+export default PlayerScreenCard;

@@ -5,6 +5,7 @@ import PlayerModel from "../../../../models/PlayerModel";
 import RGBModel from "../../../../models/RGBModel";
 import { Arrow } from "../../../atoms/icons/Icons";
 import PlayerCard from "../../../molecules/player-card/PlayerCard";
+import PopupContainer from "../../../organisms/popup-container/PopupContainer";
 import RoundContainer from "../../../organisms/round-container/RoundContainer";
 import RoundHeader from "../../../organisms/round-header/RoundHeader";
 import RoundPlayersContainer from "../../../organisms/round-players-container/RoundPlayersContainer";
@@ -27,6 +28,7 @@ function RoundPage() {
 
     return (
         <div className="container_wrap">
+            
             <div className="round_page" style={{
                 backgroundColor: defaultColor ? `rgba(${defaultColor.r}, ${defaultColor.g}, ${defaultColor.b}, ${0.0})` : "#000000"
             }}>

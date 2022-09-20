@@ -21,6 +21,7 @@ interface GameContextProps {
     getPlayers: () => PlayerModel[];
     getPlayerTotalScore: (id: number) => number;
     toggleNextPlayer: () => void;
+    removePlayer: (id: number) => void;
 
     addHole: (hole: HoleModel) => void;
     setHolesAll: (holes: HoleModel[]) => void;
@@ -40,42 +41,53 @@ interface GameContextProps {
 
     currentGameExists: () => boolean;
 
-    colorList: RGBSpecific;
+    colorList: RGBModel[];
+    getColorByName: (name: string) => RGBModel | null;
+
+    togglePopup: () => void;
 
 }
 
 const GameContext = createContext<GameContextProps>(null as any);
 
-let colorList : RGBSpecific = {
-    yellow: {
+let colorList : RGBModel[] = [
+    {
         name: "Yellow", 
         r: 252, g: 234, b: 36,
     },
-    red: {
+    {
         name: "Red",
         r: 249, g: 70, b: 70,
     },
-    green: {
+    {
         name: "Green",
         r: 135, g: 243, b: 87,
     },
-    blue: {
+    {
         name: "Blue",
         r: 0, g: 126, b: 244,
     },
-    pink: {
+    {
         name: "Pink",
         r: 235, g: 73, b: 218,
     },
-    orange: {
+    {
         name: "Orange",
         r: 254, g: 157, b: 63
     },
-    purple: {
+    {
         name: "Purple",
         r: 180, g: 63, b: 254
+    },
+    {
+        name: "Dark Green",
+        r: 47, g: 151, b:11
+    },
+    {
+        name: "White",
+        r: 255, g: 255, b: 255
     }
-}
+]
 
 
 function GameContextProvider(props: any) {
@@ -86,6 +98,7 @@ function GameContextProvider(props: any) {
     const [currentHole, setCurrentHole] = useState<number>(0);
     const [currentPlayer, setCurrentPlayer] = useState<number>(0);
     const [foundLocalStorage, setFoundLocalStorage] = useState<boolean>(false);
+    const [showPopup, setShowPopup] = useState<boolean>(false);
 
     
 
@@ -169,6 +182,10 @@ function GameContextProvider(props: any) {
                // toggleNextHole();
             }
         }
+    };
+    const removePlayer = (id: number) => {
+        let newPlayers = players.filter((player) => player.id !== id);
+        setPlayers(old => newPlayers);
     };
 
     // SCORES
@@ -285,6 +302,20 @@ function GameContextProvider(props: any) {
         return false;
     }
 
+    const getColorByName = (name: string) => {
+        for(let i = 0; i < colorList.length; i++) {
+            if(colorList[i].name?.toLocaleLowerCase() == name.toLocaleLowerCase()) {
+                return colorList[i];
+            }
+            
+        }
+        return null;
+    }
+
+    const togglePopup = () => {
+        setShowPopup(old => !showPopup);
+    }
+
     let contextValues: GameContextProps = {
         resetAll: resetAll,
 
@@ -298,6 +329,7 @@ function GameContextProvider(props: any) {
         getPlayers: getPlayers,
         getPlayerTotalScore: getPlayerTotalScore,
         toggleNextPlayer: toggleNextPlayer,
+        removePlayer: removePlayer,
 
         addHole: addHole,
         setHolesAll: setHolesAll,
@@ -314,7 +346,9 @@ function GameContextProvider(props: any) {
         getAllPlayersScores: getAllPlayersScores,
         colorList: colorList,
         clearLocalStorage: clearLocalStorage,
-        currentGameExists: currentGameExists
+        currentGameExists: currentGameExists,
+        getColorByName: getColorByName,
+        togglePopup: togglePopup
     };
 
     return (

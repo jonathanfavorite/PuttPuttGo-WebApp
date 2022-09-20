@@ -60,6 +60,33 @@ function RoundContainer() {
         return real;
     }
 
+    const [warningHoles, setWarningHoles] = React.useState<number[]>([]);
+
+    function showWarningOnThisHole(n: number) {
+        if (warningHoles.includes(n)) {
+            return true;
+        }
+        return false;
+    }
+
+    function findWarnings() {
+        let warningIDS : number[] = [];
+        for(let i = 0; i < gameContext.getHoles().length; i++) {
+            let hole = gameContext.getHoles()[i];
+            for(let j = 0; j < gameContext.getPlayers().length; j++) {
+                let player = gameContext.getPlayers()[j];
+                if(gameContext.getScoreByHoleAndPlayer(hole.number, player.id) === -10)
+                {
+                    if(!warningIDS.includes(hole.number)) {
+
+                    warningIDS.push(hole.number);
+                    }
+                }
+            }
+        }
+       setWarningHoles(warningIDS);
+    }
+
     useEffect(() => {
         let real = getCorrectChild(gameContext.getCurrentHole());
         if (real) {
@@ -70,6 +97,10 @@ function RoundContainer() {
                 inline: "center",
             });
         }
+
+
+
+
     }, [gameContext.getCurrentHole()]);
 
     return (
@@ -92,6 +123,7 @@ function RoundContainer() {
                                 key={i}
                                 onClick={() => chooseRound(i + 1)}
                             >
+                                {showWarningOnThisHole(hole.number) &&<div className="round_warning">!</div>}
                                 {hole.number}
                             </div>
                         );

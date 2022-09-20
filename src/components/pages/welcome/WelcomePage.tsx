@@ -13,7 +13,7 @@ function WelcomePage() {
         navigate("/game");
     }
     function newGameClick() {
-        gameContext.resetAll();
+      //  gameContext.resetAll();
         navigate("/players");
     }
     function rulesClick() {
@@ -21,15 +21,20 @@ function WelcomePage() {
     }
 
 
+function clearDataClick() {
+        gameContext.resetAll();
+    }
       
   function addDummyPlayers() {
     let players: PlayerModel[] = [
-        { id: 0, name: "Jonathan", color: gameContext.colorList.purple},
-        { id: 1, name: "Jessica", color: gameContext.colorList.red},
-        { id: 2, name: "Kate", color: gameContext.colorList.green },
-        { id: 3, name: "Hayden", color: gameContext.colorList.blue },
-        { id: 4, name: "Hunter", color: gameContext.colorList.pink  },
+        { id: 0, name: "Jonathan", color: gameContext.getColorByName("purple")!},
+        { id: 1, name: "Jessica", color: gameContext.getColorByName("red")!},
+        { id: 2, name: "Kate", color: gameContext.getColorByName("green")!},
+        { id: 3, name: "Hayden", color: gameContext.getColorByName("blue")!},
+        { id: 4, name: "Hunter", color: gameContext.getColorByName("pink")!},
+        { id: 5, name: "Shanan", color: gameContext.getColorByName("orange")!}
     ];
+    console.log(players);
     gameContext.setPlayersAll(players);
 }
 function addDummyCourse() {
@@ -61,16 +66,16 @@ function addDummyHoles() {
 }
 
 useEffect(() => {
+    addDummyHoles();
+}, []);
 
-  if(gameContext.getPlayers().length <= 0) {
+function dummyDataClick() {
+    gameContext.resetAll();
     addDummyCourse();
     addDummyPlayers();
     addDummyHoles();
-  }
-  
+}
 
-   
-}, []);
 
 
 
@@ -95,6 +100,12 @@ useEffect(() => {
                     </div>
                     <div className="action_button" onClick={rulesClick}>
                         Rules
+                    </div>
+                    <div className="action_button" onClick={dummyDataClick}>
+                        Add Dummy Data
+                    </div>
+                    <div className="action_button" onClick={clearDataClick}>
+                        Clear Data
                     </div>
                 </div>
             </div>

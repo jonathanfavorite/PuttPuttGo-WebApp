@@ -1,13 +1,18 @@
-import React, { createRef, useContext, useEffect, useRef } from "react";
+import React, { createRef, useContext, useEffect, useRef, useState } from "react";
 import { GameContext } from "../../../contexts/GameContext";
 import { isColorDark } from "../../../helpers/ColorHelper";
 import RGBModel from "../../../models/RGBModel";
 import ScoreAddButton from "../../atoms/score-add-button/ScoreAddButton";
+import PopupContainer from "../popup-container/PopupContainer";
 import "./RoundScoreButtons.scss";
+
 
 function RoundScoreButtons() {
     const gameContext = useContext(GameContext);
     const nextHoleRef  = useRef<HTMLDivElement>(null);
+    const [showWarning, setShowWarning] = useState<boolean>(false);
+    const [warningText, setWarningText] = useState<string>("");
+    
 
     function nextPlayerTurn() {
         gameContext.toggleNextPlayer();
@@ -59,15 +64,38 @@ function RoundScoreButtons() {
 
     function finishGameClick() {
         // alert
-        alert('Are you sure you want to finish this game?');
+        //alert('Are you sure you want to finish this game?');
+
+        setShowWarning(true);
+        
+    }
+
+    function finishGameWarning() {
+
     }
 
     useEffect(() => {
 
     });
 
+    function hideMessage() {
+        setShowWarning(false);
+    }
+
+    let buttons = [
+        {
+            text: "Back",
+            onClick: () => { setShowWarning(false)}
+        },
+        {
+            text: "Finish",
+            onClick: finishGameClick,
+        }
+    ]
     return (
+        
         <div className="round_buttons_wrap fixed_buttons_container container_bottom">
+            {showWarning && <PopupContainer buttons={buttons} title="Are you sure you want to finish this game? There are missing scores" message="GH" onClick={() => hideMessage()} />}
             <div className="buttons_container">
                 <div className="buttons_main">
                     <div className="buttons_table">
