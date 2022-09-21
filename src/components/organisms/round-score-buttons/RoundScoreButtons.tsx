@@ -33,7 +33,9 @@ function RoundScoreButtons() {
         });
 
     
-        if(currentPlayer.id === gameContext.getPlayers().length  - 1) {
+        console.log("--- currentPlayerID", currentPlayer.id);
+        console.log("--- lastPlayerID", gameContext.getLastPlayer().id)
+        if(currentPlayer.id === gameContext.getLastPlayer().id) {
         }
         else
         {

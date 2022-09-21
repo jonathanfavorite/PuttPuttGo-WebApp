@@ -90,7 +90,7 @@ function RoundContainer() {
     useEffect(() => {
         let real = getCorrectChild(gameContext.getCurrentHole());
         if (real) {
-            console.log(real);
+           // console.log(real);
             real.scrollIntoView({
                 behavior: "smooth",
                 block: "center",

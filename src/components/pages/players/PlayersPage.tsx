@@ -19,7 +19,9 @@ function PlayersPage() {
         null as any
     );
 
-    function handleDeleteButtonClick(n: number) {}
+    function handleDeleteButtonClick(n: number) {
+        gameContext.removePlayer(n);
+    }
     function handlePlayerClick(n: number) {}
 
     function selectBall(color: RGBModel) {
@@ -133,6 +135,7 @@ function PlayersPage() {
                             <div className="button_wrap">
                                 <div className="add"
                                 onClick={() => addNewPlayerButton()}
+                               
                                 style={{
                                         backgroundColor: selectedColor
                                             ? `rgba(${selectedColor.r}, ${selectedColor.g}, ${selectedColor.b}, 1)`
@@ -182,6 +185,7 @@ function PlayersPage() {
                                         handleDeleteButtonClick(player.id)
                                     }
                                     click={() => handlePlayerClick(player.id)}
+                                    onDeleteButtonClick={() => handleDeleteButtonClick(player.id)}
                                     key={i}
                                     player={player}
                                 />

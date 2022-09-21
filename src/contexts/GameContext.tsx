@@ -22,6 +22,8 @@ interface GameContextProps {
     getPlayerTotalScore: (id: number) => number;
     toggleNextPlayer: () => void;
     removePlayer: (id: number) => void;
+    getLastPlayer: () => PlayerModel;
+    getFirstPlayer: () => PlayerModel;
 
     addHole: (hole: HoleModel) => void;
     setHolesAll: (holes: HoleModel[]) => void;
@@ -99,7 +101,7 @@ function GameContextProvider(props: any) {
     const [currentPlayer, setCurrentPlayer] = useState<number>(0);
     const [foundLocalStorage, setFoundLocalStorage] = useState<boolean>(false);
     const [showPopup, setShowPopup] = useState<boolean>(false);
-
+    
     
 
     useEffect(() => {
@@ -123,6 +125,7 @@ function GameContextProvider(props: any) {
 
    useEffect(() => {
     SaveAllToLocalStorage();
+    console.log("CURRETN PLAYER ID", currentPlayer); 
    }, [players, scores, course, holes, currentHole, currentPlayer]);
  
 
@@ -167,25 +170,70 @@ function GameContextProvider(props: any) {
     const setPlayersAll = (players: PlayerModel[]) => {
         setPlayers(players);
     };
+    const getPlayerByID = (id: number) => {
+        return players.find((p) => p.id === id) ? players.find((p) => p.id === id) : players[0];
+    };
     const getCurrentPlayer = () => {
-        return players[currentPlayer] ? players[currentPlayer] : (null as any);
+        return getPlayerByID(currentPlayer) ? getPlayerByID(currentPlayer) : (null as any);
+    };
+    const getPlayerAfter = (id: number) => {
+        let index = players.findIndex((p) => p.id === id);
+        if (index === players.length - 1) {
+            return players[0];
+        } else {
+            return players[index + 1];
+        }
+    };
+    const getLastPlayer = () => {
+        return players[players.length - 1];
+    }
+    const getFirstPlayer = () => {
+        return players[0];
+    }
+    const getNextPlayer = (startingIndex: number) => {
+        let currentPlayerIndex = players.findIndex((p) => p.id === startingIndex);
+        console.log("~~~ currentPlayerIndex", currentPlayerIndex);
+        console.log("CURRETN PLAYER ID", currentPlayer);
+        if (currentPlayerIndex === players.length - 1) {
+            return players[0];
+        }
+        else {
+           // console.log(players[currentPlayerIndex + 1]);
+           console.log("FOUND next INDEX", players[currentPlayerIndex + 1]);
+            return players[currentPlayerIndex + 1];
+        }
     };
     const getPlayers = () => {
         return players;
     };
     const toggleNextPlayer = () => {
-        if (currentPlayer < players.length - 1) {
-            setCurrentPlayer(currentPlayer + 1);
+        //console.log("TOGGLE NEXT PLAYER");
+       // console.log(" - CURRENT PLAYER", getPlayerByID(currentPlayer)?.id)
+        //console.log(" - NEXT PLAYER", getNextPlayer()?.id)
+        let trueCurrentPlayer = getPlayerByID(getCurrentPlayer().id);
+        if (trueCurrentPlayer && trueCurrentPlayer?.id != getLastPlayer().id) {
+           console.log("UPDATING");
+           // console.log(players);
+           let nextPlayer = getNextPlayer(trueCurrentPlayer.id);
+            setCurrentPlayer(old => nextPlayer.id);
         } else {
-            setCurrentPlayer(0);
+            setCurrentPlayer(getFirstPlayer().id);
             if(holesRemaning() > 0) {
                // toggleNextHole();
             }
         }
     };
     const removePlayer = (id: number) => {
-        let newPlayers = players.filter((player) => player.id !== id);
-        setPlayers(old => newPlayers);
+        let newPlayers : PlayerModel[] = players.filter((player) => player.id !== id);
+        console.log(newPlayers, "NEW PLAYERS");
+       // setCurrentPlayer(getFirstPlayer().id);
+        setPlayersAll(newPlayers);
+        setCurrentPlayer(newPlayers[0].id);
+        console.log("PLAYERS", players);
+        console.log("FIRST", newPlayers[0].id);
+        console.log("current", currentPlayer);
+        
+
     };
 
     // SCORES
@@ -214,11 +262,9 @@ function GameContextProvider(props: any) {
         }
 
         if (alreadyExists) {
-            console.log("yes");
             let oldScores = [...scores];
             setScores((old) => oldScores);
         } else {
-            console.log("no");
             setScores((old) => [...scores, score]);
         }
     };
@@ -271,7 +317,7 @@ function GameContextProvider(props: any) {
     const toggleNextHole = () => {
         if (currentHole < holes.length - 1) {
             setCurrentHole(currentHole + 1);
-            setCurrentPlayer(0);
+            setCurrentPlayer(getFirstPlayer().id);
         } else {
            // setCurrentHole(0);
         }
@@ -330,6 +376,8 @@ function GameContextProvider(props: any) {
         getPlayerTotalScore: getPlayerTotalScore,
         toggleNextPlayer: toggleNextPlayer,
         removePlayer: removePlayer,
+        getLastPlayer: getLastPlayer,
+        getFirstPlayer: getFirstPlayer,
 
         addHole: addHole,
         setHolesAll: setHolesAll,

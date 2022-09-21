@@ -10,6 +10,7 @@ interface PlayerProps {
     player: PlayerModel;
     deleteButtonClick: () => void;
     click: (n: number) => void;
+    onDeleteButtonClick: () => void;
 }
 
 
@@ -53,12 +54,12 @@ function PlayerScreenCard(props: PlayerProps) {
 
         <div
             onClick={() => gameContext.setCurrentPlayer(props.player.id)}
-            className={`player_screen_card_wrap ${myTurn ? "myturn" : ""}`}
+            className={`player_screen_card_wrap ${myTurn ? "" : ""}`}
             style={{
-                backgroundColor: myTurn
-                    ? `rgba(${colors.r}, ${colors.g}, ${colors.b}, 0.2)`
-                    : "",
-                backgroundBlendMode: myTurn ? "darken" : ""
+                // backgroundColor: myTurn
+                //     ? `rgba(${colors.r}, ${colors.g}, ${colors.b}, 0.2)`
+                //     : "",
+                // backgroundBlendMode: myTurn ? "darken" : ""
             }}
         >
             <div className="ball">
@@ -80,29 +81,21 @@ function PlayerScreenCard(props: PlayerProps) {
                 </div>
                 <div className="score_total">Score: {myScore}</div>
             </div>
-            <div className="score_box">
+            <div className="score_box" onClick={props.onDeleteButtonClick}>
                 <div
-                    className="round_score"
-                    style={{
-                        backgroundColor: myTurn
-                            ? `rgb(${colors.r}, ${colors.g}, ${colors.b})`
-                            : `rgba(${colors.r}, ${colors.g}, ${colors.b}, 0.2)`,
-                    }}
+                    className="round_score" 
+                    // style={{
+                    //     backgroundColor: myTurn
+                    //         ? `rgb(${colors.r}, ${colors.g}, ${colors.b})`
+                    //         : `rgba(${colors.r}, ${colors.g}, ${colors.b}, 0.2)`,
+                    // }}
                 >
                     <span
                         style={{
-                            color: roundScoreColor(),
+                           
                         }}
                     >
-                        {gameContext.getScoreByHoleAndPlayer(
-                            gameContext.getCurrentHole(),
-                            props.player.id
-                        ) != -10
-                            ? gameContext.getScoreByHoleAndPlayer(
-                                  gameContext.getCurrentHole(),
-                                  props.player.id
-                              )
-                            : ""}
+                      X
                     </span>
                 </div>
             </div>

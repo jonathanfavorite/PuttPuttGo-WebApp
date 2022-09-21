@@ -77,9 +77,12 @@ function PlayerCard(props: PlayerProps) {
                         color: `rgb(${colors.r}, ${colors.g}, ${colors.b})`,
                     }}
                 >
-                    {props.player.name}
+                    {props.player.name} 
                 </div>
                 <div className="score_total">Score: {myScore}</div>
+                {/* <div className='score_total'>
+                Current: {gameContext.getCurrentPlayer()?.id} My ID: {props.player.id}
+                </div> */}
             </div>
             <div className="score_box">
                 <div

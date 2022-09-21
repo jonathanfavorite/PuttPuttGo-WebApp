@@ -9,7 +9,7 @@
     max-width:600px;
     align-items: center;
     transition: all 0.05s ease-in-out;
-    opacity: 0.5;
+    opacity: 1;
     .ball {
         width:20vw;
         max-width:40px;
@@ -62,7 +62,8 @@
             font-size:30px;
             max-width:50px;
             font-weight: bold;
-            background:#151417;
+            background:rgb(255, 73, 73);
+            color:rgb(177, 39, 39);
             border-radius: 10px;
             justify-content: center;
             align-items: center;
