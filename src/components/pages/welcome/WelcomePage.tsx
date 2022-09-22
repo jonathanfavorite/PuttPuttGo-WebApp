@@ -108,6 +108,7 @@ function dummyDataClick() {
                     <div className="action_button" onClick={clearDataClick}>
                         Clear Data
                     </div>
+                    <div className="action_button" onClick={() => navigate("game/results")}>Test</div>
                 </div>
             </div>
             <div className="bottom_container">

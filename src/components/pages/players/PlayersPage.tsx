@@ -48,6 +48,11 @@ function PlayersPage() {
         setModalOpened(false);
     }
 
+    function handleOnStartGameClick() {
+        gameContext.updateCurrentHole(0);
+        gameContext.clearScores();
+        navitate("/game");
+    }
     let defaultColors = {
         default: "#000000",
     };
@@ -195,7 +200,7 @@ function PlayersPage() {
                 </div>
             </div>
             <div className="start_game_container">
-                <div className="start_game_button">Start Game</div>
+                <div className="start_game_button" onClick={handleOnStartGameClick}>Start Game</div>
             </div>
         </div>
     );

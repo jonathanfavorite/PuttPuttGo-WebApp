@@ -38,6 +38,7 @@ interface GameContextProps {
     setScoresAll: (scores: ScoreModel[]) => void;
     getScoreByHoleAndPlayer: (hole: number, playerID: number) => number;
     getAllPlayersScores: () => LeaderboardModel[];
+    clearScores: () => void;
 
     clearLocalStorage: () => void;
 
@@ -118,14 +119,14 @@ function GameContextProvider(props: any) {
         }
         else
         {
-            console.log("no game data exists");
+      
         }
     
    }, []);
 
    useEffect(() => {
     SaveAllToLocalStorage();
-    console.log("CURRETN PLAYER ID", currentPlayer); 
+ 
    }, [players, scores, course, holes, currentHole, currentPlayer]);
  
 
@@ -192,14 +193,10 @@ function GameContextProvider(props: any) {
     }
     const getNextPlayer = (startingIndex: number) => {
         let currentPlayerIndex = players.findIndex((p) => p.id === startingIndex);
-        console.log("~~~ currentPlayerIndex", currentPlayerIndex);
-        console.log("CURRETN PLAYER ID", currentPlayer);
         if (currentPlayerIndex === players.length - 1) {
             return players[0];
         }
         else {
-           // console.log(players[currentPlayerIndex + 1]);
-           console.log("FOUND next INDEX", players[currentPlayerIndex + 1]);
             return players[currentPlayerIndex + 1];
         }
     };
@@ -207,13 +204,8 @@ function GameContextProvider(props: any) {
         return players;
     };
     const toggleNextPlayer = () => {
-        //console.log("TOGGLE NEXT PLAYER");
-       // console.log(" - CURRENT PLAYER", getPlayerByID(currentPlayer)?.id)
-        //console.log(" - NEXT PLAYER", getNextPlayer()?.id)
         let trueCurrentPlayer = getPlayerByID(getCurrentPlayer().id);
         if (trueCurrentPlayer && trueCurrentPlayer?.id != getLastPlayer().id) {
-           console.log("UPDATING");
-           // console.log(players);
            let nextPlayer = getNextPlayer(trueCurrentPlayer.id);
             setCurrentPlayer(old => nextPlayer.id);
         } else {
@@ -225,13 +217,8 @@ function GameContextProvider(props: any) {
     };
     const removePlayer = (id: number) => {
         let newPlayers : PlayerModel[] = players.filter((player) => player.id !== id);
-        console.log(newPlayers, "NEW PLAYERS");
-       // setCurrentPlayer(getFirstPlayer().id);
         setPlayersAll(newPlayers);
         setCurrentPlayer(newPlayers[0].id);
-        console.log("PLAYERS", players);
-        console.log("FIRST", newPlayers[0].id);
-        console.log("current", currentPlayer);
         
 
     };
@@ -278,6 +265,10 @@ function GameContextProvider(props: any) {
             }
         }
         return -10;
+    };
+
+    const clearScores = () => {
+        setScores(old => []);
     };
 
     const getAllPlayersScores = () => {
@@ -392,6 +383,8 @@ function GameContextProvider(props: any) {
         setScoresAll: setScoresAll,
         getScoreByHoleAndPlayer: getScoreByHoleAndPlayer,
         getAllPlayersScores: getAllPlayersScores,
+        clearScores: clearScores,
+
         colorList: colorList,
         clearLocalStorage: clearLocalStorage,
         currentGameExists: currentGameExists,

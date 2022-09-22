@@ -1,0 +1,121 @@
+.results_page {
+  display: flex;
+  flex: 1;
+  background-color: #253521;
+  max-height: 100vh;
+  color: #fff;
+  flex-direction: column;
+  .top_container {
+    padding: 20px;
+  }
+  .body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    color: #000;
+
+
+    .results_hero {
+        display: flex;
+        flex-direction: column;
+        // flex: 0 0 45vh;
+        box-sizing: border-box;
+        max-height: 45vh;
+
+        padding:20px;
+        .hero_title {
+            display:flex;
+            flex-direction: column;
+            padding-bottom:20px;
+            justify-content: center;
+            align-items: center;
+            color:#fff;
+            span {
+                font-size:15px;
+            }
+            b {
+                font-size:40px;
+            }
+        }
+        .hero_list {
+            flex:1;
+           
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            .hero_indi {
+                position: relative;
+                flex:1;
+                padding:20px;
+              
+                background:#fff;
+              
+                border-radius: 10px;
+                margin-right:10px;
+                text-align: center;
+                &:last-child {
+                    margin-right:0;
+                }
+                .inside {
+                    position: relative;
+                    z-index:10;
+                }
+                .whitebg {
+                    position: absolute;
+                    left:0;
+                    top:0;
+                    width:100%;
+                    height:100%;
+                    border-radius: 10px;
+                    box-sizing: border-box;
+                    border: 5px solid black;
+                    opacity: 1;
+                    z-index: 3;
+                    background:#fff;
+                }
+
+                .ball_wrap {
+                    position: relative;
+                    .score {
+                        position: absolute;
+                        left:0;
+                       top:0;
+                        display: flex;
+
+                        flex-direction: column;
+                        width:100%;
+                        height:100%;
+                        justify-content: center;
+                        align-self: center;
+                        box-sizing: border-box;
+                        //transform: translate(0, -50%);
+                        span {
+                            font-weight: bold;
+                            font-size:40px;
+                        }
+                        b {
+                            font-size:12px;
+                        }
+                    }
+                }
+                .name {
+                    font-size: 20px;
+                    font-weight: bold;
+                    margin-top:10px;
+                    box-sizing: border-box;
+                }
+               
+            }
+        }
+    }
+    .content {
+     
+  
+    }
+  }
+  .bottom_container {
+    padding: 20px;
+    
+  }
+}

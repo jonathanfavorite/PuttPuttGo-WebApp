@@ -1,4 +1,5 @@
 import React, { createRef, useContext, useEffect, useRef, useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import { GameContext } from "../../../contexts/GameContext";
 import { isColorDark } from "../../../helpers/ColorHelper";
 import RGBModel from "../../../models/RGBModel";
@@ -9,6 +10,7 @@ import "./RoundScoreButtons.scss";
 
 function RoundScoreButtons() {
     const gameContext = useContext(GameContext);
+    const navigate = useNavigate();
     const nextHoleRef  = useRef<HTMLDivElement>(null);
     const [showWarning, setShowWarning] = useState<boolean>(false);
     const [warningText, setWarningText] = useState<string>("");
@@ -32,9 +34,7 @@ function RoundScoreButtons() {
             courseID: currentCourse,
         });
 
-    
-        console.log("--- currentPlayerID", currentPlayer.id);
-        console.log("--- lastPlayerID", gameContext.getLastPlayer().id)
+
         if(currentPlayer.id === gameContext.getLastPlayer().id) {
         }
         else
@@ -91,7 +91,7 @@ function RoundScoreButtons() {
         },
         {
             text: "Finish",
-            onClick: finishGameClick,
+            onClick: () => navigate("/game/results"),
         }
     ]
     return (
