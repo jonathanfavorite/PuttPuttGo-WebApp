@@ -67,6 +67,7 @@ function addDummyHoles() {
 
 useEffect(() => {
     addDummyHoles();
+    addDummyCourse();
 }, []);
 
 function dummyDataClick() {
