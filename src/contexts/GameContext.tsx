@@ -147,7 +147,7 @@ function GameContextProvider(props: any) {
     const resetAll = () => {
         setPlayers([]);
         setScores([]);
-        setHoles([]);
+        //setHoles([]);
         setCurrentHole(0);
         setCurrentPlayer(0);
         localStorage.clear();
